@@ -32,7 +32,7 @@ class TemplateTest extends TestCase
         $this->actingAs($user);
 
         $product = $user->products()->create([
-            'name' => 'かけるとポン酢',
+            'name' => '濃口しょうゆ',
             'description' => 'かけるだけで一品',
         ]);
 
@@ -46,7 +46,7 @@ class TemplateTest extends TestCase
             'template_id' => $template->id,
         ]))
             ->assertStatus(200)
-            ->assertSee('かけるとポン酢を使った1品。かけるだけで一品');
+            ->assertSee('濃口しょうゆを使った1品。かけるだけで一品');
     }
 
     // 他人の型は編集できない

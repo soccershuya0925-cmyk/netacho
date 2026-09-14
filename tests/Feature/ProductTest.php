@@ -26,11 +26,11 @@ class ProductTest extends TestCase
         $user = User::factory()->create();
         $this->actingAs($user);
 
-        $user->products()->create(['name' => 'かけるとポン酢']);
+        $user->products()->create(['name' => '濃口しょうゆ']);
 
         $this->get(route('products.index'))
             ->assertStatus(200)
-            ->assertSee('かけるとポン酢');
+            ->assertSee('濃口しょうゆ');
     }
 
     // 他人の商品は一覧に出てこない
@@ -54,8 +54,8 @@ class ProductTest extends TestCase
         $this->actingAs($user);
 
         $response = $this->post(route('products.store'), [
-            'name' => '杏仁タレ',
-            'description' => 'かけるだけで杏仁豆腐になるタレ',
+            'name' => 'ごまだれ',
+            'description' => 'かけるだけで一品になるたれ',
         ]);
 
         $product = Product::first();
@@ -63,8 +63,8 @@ class ProductTest extends TestCase
 
         $this->assertDatabaseHas('products', [
             'user_id' => $user->id,
-            'name' => '杏仁タレ',
-            'description' => 'かけるだけで杏仁豆腐になるタレ',
+            'name' => 'ごまだれ',
+            'description' => 'かけるだけで一品になるたれ',
         ]);
     }
 

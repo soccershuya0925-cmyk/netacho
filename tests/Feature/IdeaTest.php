@@ -17,7 +17,7 @@ class IdeaTest extends TestCase
         $user = User::factory()->create();
         $this->actingAs($user);
 
-        $product = $user->products()->create(['name' => 'かけるとポン酢']);
+        $product = $user->products()->create(['name' => '濃口しょうゆ']);
 
         $this->post(route('ideas.store'), [
             'product_id' => $product->id,
@@ -84,15 +84,15 @@ class IdeaTest extends TestCase
         $user = User::factory()->create();
         $this->actingAs($user);
 
-        $ponzu = $user->products()->create(['name' => 'ポン酢']);
-        $annin = $user->products()->create(['name' => '杏仁タレ']);
+        $shoyu = $user->products()->create(['name' => 'しょうゆ']);
+        $goma = $user->products()->create(['name' => 'ごまだれ']);
 
-        $user->ideas()->create(['product_id' => $ponzu->id, 'title' => 'ポン酢のネタ', 'body' => 'x', 'status' => '下書き']);
-        $user->ideas()->create(['product_id' => $annin->id, 'title' => '杏仁のネタ', 'body' => 'x', 'status' => '下書き']);
+        $user->ideas()->create(['product_id' => $shoyu->id, 'title' => 'しょうゆのネタ', 'body' => 'x', 'status' => '下書き']);
+        $user->ideas()->create(['product_id' => $goma->id, 'title' => 'ごまだれのネタ', 'body' => 'x', 'status' => '下書き']);
 
-        $this->get(route('ideas.index', ['product_id' => $ponzu->id]))
-            ->assertSee('ポン酢のネタ')
-            ->assertDontSee('杏仁のネタ');
+        $this->get(route('ideas.index', ['product_id' => $shoyu->id]))
+            ->assertSee('しょうゆのネタ')
+            ->assertDontSee('ごまだれのネタ');
     }
 
     // タグで絞り込める

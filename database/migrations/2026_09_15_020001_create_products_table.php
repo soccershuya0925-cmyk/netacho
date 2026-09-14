@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             // 誰の商品か（ユーザを消したら商品も消える）
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->string('name');                     // 商品名（例：かけるとポン酢）
+            $table->string('name');                     // 商品名（例：濃口しょうゆ）
             $table->text('description')->nullable();    // 特徴・売り（型に差し込む材料）
             $table->string('image_path')->nullable();   // 商品写真
             $table->timestamps();
